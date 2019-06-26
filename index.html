@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function dispArr(arr) {
+        let i;
+        for (i = 0; i < arr.length; ++i) {
+            document.write(arr[i] + " ");
+            if(i % 10 === 0 && i !== 0){
+                document.write("<br>");
+            }
+        }
+    }
+
+    function count(arr, data) {
+        var count = 0;
+        var position = arr.indexOf(data);
+        if (position > -1) {
+            ++count;
+            for (var i = position-1; i > 0; --i) { // Kiểm tra vị trí trước của hàm xem có trùng với data không
+                if (arr[i] == data) {
+                    ++count;
+                }
+                else {
+                    break;
+                }
+            }
+
+            for (var i = position+1; i < arr.length; ++i) { //Kiểm tra vị trí trước của hàm xem có trùng với data không
+                if (arr[i] == data) {
+                    ++count;
+                }
+                else {
+                    break;
+                }
+            }
+        } //end if
+        return count;
+    }
+
+    var nums = [];
+    for(let i =0;i<100;++i){
+        nums[i] = Math.floor(Math.random() * 101);
+    }
+
+    nums.sort(function(a, b){return a-b}); //Sắp xếp hàm trước theo thứ tự tăng dần để sử dụng thuật toán.
+    dispArr(nums);
+    document.write("<br/>");
+
+    var val = parseInt(prompt("Enter a value to count: "));
+    var retVal = count(nums, val);
+    document.write("Found " + retVal + " occurrences of " + val + ".");
+</script>
+</body>
+</html>
